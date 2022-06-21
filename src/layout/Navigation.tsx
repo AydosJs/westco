@@ -36,6 +36,16 @@ export default function Navigation() {
             <h6 className=" text-md font-medium">Courses</h6>
           </li>
         </Link>
+        <Link to="/categories">
+          <li className={`${pathname === '/categories' ? 'text-blue-500' : 'text-slate-500 '} p-2 rounded flex flex-row flex-nowrap space-x-4 items-center text-sm font-medium hover:text-blue-500 group cursor-pointer`}>
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+              </svg>
+            </span>
+            <h6 className=" text-md font-medium">Categories</h6>
+          </li>
+        </Link>
 
       </ul>
 
