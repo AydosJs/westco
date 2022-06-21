@@ -8,6 +8,7 @@ import LoginContainers from "../containers/auth/SignInContainers";
 import AuthRoute from "./AuthRoute";
 import LibrariContainer from "../containers/librari/LibrariContainer";
 import UserPageContainer from "../containers/user/UserPageContainer";
+import LibrariViewContainer from "../containers/librari/LibrariViewContainer";
 
 export default function AppRouter() {
   return (
@@ -20,6 +21,7 @@ export default function AppRouter() {
       <Route element={<MainContainer />}>
         <Route path='/user-profile' element={<UserPageContainer />} />
         <Route path='/librari' element={<LibrariContainer />} />
+        <Route path='librari/:id' element={<LibrariViewContainer />} />
       </Route>
 
 

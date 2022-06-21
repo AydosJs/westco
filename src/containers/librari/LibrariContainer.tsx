@@ -15,10 +15,18 @@ export interface PageableData<T> {
   limit: number
 }
 
+export interface IAuther {
+  _id?: string,
+  fullName: string,
+  imgUrl: string
+}
+
 export interface IBook {
   _id?: string,
   name: string,
   imgUrl: string
+
+  author?: IAuther
 }
 
 export interface IQueryFilter {
@@ -104,7 +112,7 @@ export default function LibrariContainer() {
       >
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
           {books.total != 0 && books.items.map((book: IBook) => (
-            <Link to="/" key={book?._id}>
+            <Link to={`/librari/${book?._id}`} key={book?._id}>
               <BooksItemComponent book={book} />
             </Link>
           ))}

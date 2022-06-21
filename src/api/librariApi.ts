@@ -1,4 +1,4 @@
-import { get, post, put } from './ApiClient';
+import { get } from './ApiClient';
 
 // export type CardTypesResponse = {
 //   types: TypeItem[];
@@ -7,4 +7,8 @@ import { get, post, put } from './ApiClient';
 
 export function getBooks(data?: object) {
   return get<any>('https://coursesnodejs.herokuapp.com/user/book', data);
+}
+
+export function getBookitem(id: string) {
+  return get<any>(`https://coursesnodejs.herokuapp.com/user/book/${id}`);
 }
