@@ -3,14 +3,19 @@ import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { AuthPayload } from '../containers/auth/RegisterContainer';
+import { signInAdmin } from '../api/admin/adminApi';
+import { AdminPayload } from '../containers/admin/profile/crud/SignInAdminProfileContainer';
 
 
 export interface AuthContextType {
   token?: TokenResponse;
+  tokenAdmin?: TokenResponse;
   isLoggedIn?: boolean;
+  isAdmin?: boolean;
   loader: boolean;
   signIn: (payload: AuthPayload) => Promise<unknown>;
   register: (payload: AuthPayload) => Promise<unknown>;
+  signInAdminFn: (payload: AdminPayload) => Promise<unknown>;
   setLoader: any;
 }
 
@@ -36,7 +41,11 @@ export default function AuthProvider({ children }: Props) {
   const [token, setToken] = useState<TokenResponse | undefined>({
     token: Cookies.get('token') || '',
   } as TokenResponse);
+  const [tokenAdmin, setTokenAdmin] = useState<TokenResponse | undefined>({
+    token: Cookies.get('tokenAdmin') || '',
+  } as TokenResponse);
   const [isLoggedIn, setLoggedIn] = useState<boolean>(Boolean(token?.token));
+  const [isAdmin, setIsAdmin] = useState<boolean>(Boolean(tokenAdmin?.token));
   const [loader, setLoader] = useState<boolean>(false);
   const navigate = useNavigate();
 
@@ -77,8 +86,26 @@ export default function AuthProvider({ children }: Props) {
       });
   };
 
+  const signInAdminFn = (payload: AdminPayload) => {
+    setLoader(true);
+    return signInAdmin(payload)
+      .then((res: any) => {
+        setTokenAdmin({ token: res.data?.data?.token })
+        setIsAdmin(true)
+        toast.success('Successfully logged in');
+        navigate('/admin/profile');
+      })
+      .catch((error) => {
+        setIsAdmin(false)
+        toast.error(error.message);
+      })
+      .finally(() => {
+        setLoader(false);
+      });
+  };
 
-  const value = { token, loader, isLoggedIn, signIn, register, setLoader };
+
+  const value = { token, loader, isLoggedIn, signIn, register, setLoader, isAdmin, signInAdminFn };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

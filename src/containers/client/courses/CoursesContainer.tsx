@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getBooks } from "../../api/librariApi";
-import { AuthContext } from "../../providers/AuthProvider";
-import LoaderContainer from "../loader/LoaderContainer";
+import { getBooks } from "../../../api/librariApi";
+import { AuthContext } from "../../../providers/AuthProvider";
+import LoaderContainer from "../../loader/LoaderContainer";
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { DEFAULT_FILTER } from "../../constants/Constants";
-import LoaderCrads from "../loader/LoaderCrads";
-import { getCourses } from "../../api/coursesApi";
+import { DEFAULT_FILTER } from "../../../constants/Constants";
+import LoaderCrads from "../../loader/LoaderCrads";
+import { getCourses } from "../../../api/coursesApi";
 import { IQueryFilter, PageableData } from "../librari/LibrariContainer";
-import CoursesComponent from "../../components/CoursesComponent/CoursesComponent";
+import CoursesComponent from "../../../components/CoursesComponent/CoursesComponent";
 
 export interface ICourse {
   _id?: string,

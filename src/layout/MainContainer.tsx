@@ -10,7 +10,7 @@ const MainContainer = () => {
 
       <div id="scrollableDiv" className=" mb-12 w-full min-h-screen p-4 overflow-y-auto h-screen flex flex-col items-center space-y-6" style={{ overflowY: "auto" }}>
         <Header />
-        <main className="pb-10 flex flex-col space-y-6 max-w-7xl w-full">
+        <main style={{ minHeight: 'calc(100vh - 113px)' }} className="pb-10 flex flex-col space-y-6 max-w-7xl w-full">
           <Outlet />
         </main>
       </div>

@@ -1,5 +1,5 @@
-import { ICategorie } from '../../containers/categories/CategoriesContainer'
-import { ICourse } from '../../containers/courses/CoursesContainer'
+import { ICategorie } from '../../containers/client/categories/CategoriesContainer'
+import { ICourse } from '../../containers/client/courses/CoursesContainer'
 
 type Props = {
   categorie: ICategorie

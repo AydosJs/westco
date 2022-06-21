@@ -32,7 +32,7 @@ export default function RegisterContainer() {
   return (
     <section className=" flex justify-center items-center min-h-screen p-4">
 
-      <form className="w-full sm:w-4/6 lg:w-1/3 px-6 bg-white flex flex-col space-y-6 max-w-xl" onSubmit={formik.handleSubmit}>
+      <form className="w-full sm:w-4/6 lg:w-1/3 p-10 min-h-[469px] py-12 rounded bg-white flex flex-col justify-around space-y-6 max-w-xl" onSubmit={formik.handleSubmit}>
 
         <div>
           <h2 className="text-gray-900 text-4xl mb-1 font-medium title-font">Register</h2>

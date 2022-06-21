@@ -7,34 +7,32 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { DEFAULT_FILTER } from "../../constants/Constants";
 import LoaderCrads from "../loader/LoaderCrads";
 import { getCourses } from "../../api/coursesApi";
-import { IBook, IQueryFilter, PageableData } from "../librari/LibrariContainer";
+import { IQueryFilter, PageableData } from "../client/librari/LibrariContainer";
 import CoursesComponent from "../../components/CoursesComponent/CoursesComponent";
-import { getCategories } from "../../api/categoriesApi";
-import CategoriesComponent from "../../components/categoriesComponent/CategoriesComponent";
 
-export interface ICategorie {
+export interface ICourse {
   _id?: string,
   name: string,
   imgUrl: string,
-  books: IBook[]
+  description: string
 }
 
-export default function CategoriesContainer() {
+export default function CoursesContainer() {
   const { loader, setLoader } = useContext(AuthContext);
   const filter: IQueryFilter = DEFAULT_FILTER
-  const [categories, setCategories] = useState<PageableData<ICategorie>>({
+  const [courses, setCourses] = useState<PageableData<ICourse>>({
     items: [],
     total: 0,
     limit: filter?.limit
   })
 
-  const getCategoriesFn = async () => {
+  const getLibrari = async () => {
     try {
       if (loader) return
       setLoader(true)
-      const res = await getCategories(filter)
-      setCategories({
-        ...categories,
+      const res = await getCourses(filter)
+      setCourses({
+        ...courses,
         total: res.data?.data?.total,
         items: res.data?.data?.data,
       })
@@ -46,26 +44,26 @@ export default function CategoriesContainer() {
   }
 
   useEffect(() => {
-    getCategoriesFn()
+    getLibrari()
   }, [])
 
-  const updateCategories = async (payload: any) => {
+  const updateCourses = async (payload: any) => {
     if (
-      !categories?.items?.length ||
+      !courses?.items?.length ||
       loader ||
-      (categories.total < payload.offset && payload.offset <= 0)
+      (courses.total < payload.offset && payload.offset <= 0)
     )
       return
     try {
-      console.log('update log ->', payload, loader, categories)
+      console.log('update log ->', payload, loader, courses)
 
       const response: any = await getBooks(payload)
       const items = [
-        ...categories.items,
-        ...((response.data?.data?.data as ICategorie[]) || []),
+        ...courses.items,
+        ...((response.data?.data?.data as ICourse[]) || []),
       ]
 
-      setCategories({ ...categories, items: items })
+      setCourses({ ...courses, items: items })
     } catch (error) {
       console.error('books items is error ', error)
     } finally {
@@ -73,25 +71,26 @@ export default function CategoriesContainer() {
     }
   }
 
-  console.log('setCategories ', categories)
+  console.log('courses', courses)
   return (
     <>
       {loader && <LoaderContainer />}
       <InfiniteScroll
-        dataLength={categories.items?.length}
-        next={() => updateCategories({ ...filter, offset: categories?.items?.length })}
+        // pageStart={0}
+        dataLength={courses.items?.length}
+        next={() => updateCourses({ ...filter, offset: courses?.items?.length })}
         scrollableTarget="scrollableDiv"
         hasMore={
-          categories.total > categories?.items?.length &&
-          categories?.items?.length >= categories?.limit
+          courses.total > courses?.items?.length &&
+          courses?.items?.length >= courses?.limit
         }
         loader={<LoaderCrads />}
 
       >
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 min-h-screen ">
-          {categories.total != 0 && categories.items.map((categorie: ICategorie) => (
-            <Link to={`/categories/${categorie?._id}`} key={categorie?._id}>
-              <CategoriesComponent categorie={categorie} />
+          {courses.total != 0 && courses.items.map((course: ICourse) => (
+            <Link to={`/courses/${course?._id}`} key={course?._id}>
+              <CoursesComponent course={course} />
             </Link>
           ))}
 

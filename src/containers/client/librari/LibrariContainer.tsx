@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getBooks } from "../../api/librariApi";
-import BooksItemComponent from "../../components/BooksComponent/BooksItemComponent";
-import { AuthContext } from "../../providers/AuthProvider";
-import LoaderContainer from "../loader/LoaderContainer";
+import { getBooks } from "../../../api/librariApi";
+import BooksItemComponent from "../../../components/BooksComponent/BooksItemComponent";
+import { AuthContext } from "../../../providers/AuthProvider";
+import LoaderContainer from "../../loader/LoaderContainer";
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { DEFAULT_FILTER } from "../../constants/Constants";
-import LoaderCrads from "../loader/LoaderCrads";
+import { DEFAULT_FILTER } from "../../../constants/Constants";
+import LoaderCrads from "../../loader/LoaderCrads";
 
 
 export interface PageableData<T> {

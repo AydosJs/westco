@@ -1,16 +1,19 @@
 import React, { useContext, useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
-import { getBookitem } from "../../api/librariApi";
-import Button from "../../components/form-elements/Button";
-import { AuthContext } from "../../providers/AuthProvider";
-import LoaderContainer from "../loader/LoaderContainer";
+import toast from "react-hot-toast";
+import { useNavigate, useParams } from "react-router-dom"
+import { getBookitem } from "../../../api/librariApi";
+import Button from "../../../components/form-elements/Button";
+import { AuthContext } from "../../../providers/AuthProvider";
+import LoaderContainer from "../../loader/LoaderContainer";
 import { IBook } from "./LibrariContainer";
 
 
 export default function LibrariViewContainer() {
-  const { loader, setLoader } = useContext(AuthContext);
+  const { isLoggedIn, loader, setLoader } = useContext(AuthContext);
   const [bookItem, setBookItem] = useState({} as IBook)
   const { id } = useParams()
+  const navigate = useNavigate();
+
 
   const getLibrariItem = async () => {
     try {
@@ -79,7 +82,7 @@ export default function LibrariViewContainer() {
             </div>
             <div className="flex flex-row py-3">
               <p className="text-md font-medium w-1/2 sm:w-1/2 md:w-1/3 lg:w-1/3 text-gray-600 flex flex-row flex-nowrap space-x-2 items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                 </svg>
                 <span>
@@ -90,13 +93,30 @@ export default function LibrariViewContainer() {
             </div>
 
             {bookItem?.author && (
+
               <div className="flex flex-row py-3">
-                <p className="text-md font-medium w-1/2 md:w-2/3 text-gray-600">Author name </p>
-                <p className="text-md font-medium w-1/2 md:w-2/3 text-gray-900">{bookItem?.author?.fullName}</p>
+                <p className="text-md font-medium w-1/2 sm:w-1/2 md:w-1/3 lg:w-1/3 text-gray-600 flex flex-row flex-nowrap space-x-2 items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                  <span>
+                    Author:
+                  </span>
+                </p>
+                <p className="text-md font-medium w-1/2 sm:w-1/2 md:w-2/3 lg:w-2/3 text-gray-900 first-letter:uppercase">{bookItem?.author?.fullName}</p>
               </div>
             )}
 
-            <Button className={'mt-6'}>
+            <Button className={'mt-6'}
+              onClick={() => {
+                if (isLoggedIn) {
+                  toast.success('Now you can read this book any time :)');
+                } else {
+                  toast.error('Please register first');
+                  navigate('/register')
+                }
+              }}
+            >
               READ THIS BOOK
             </Button>
 

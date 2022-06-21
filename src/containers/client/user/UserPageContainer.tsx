@@ -1,10 +1,10 @@
 import dayjs from "dayjs";
 import { useContext, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { getUser } from "../../api/userApi";
-import Button from "../../components/form-elements/Button";
-import { AuthContext, IUser } from "../../providers/AuthProvider";
-import LoaderContainer from "../loader/LoaderContainer";
+import { getUser } from "../../../api/userApi";
+import Button from "../../../components/form-elements/Button";
+import { AuthContext, IUser } from "../../../providers/AuthProvider";
+import LoaderContainer from "../../loader/LoaderContainer";
 
 export default function UserPageContainer() {
   const { isLoggedIn, loader, setLoader } = useContext(AuthContext);

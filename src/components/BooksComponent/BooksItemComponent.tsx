@@ -1,4 +1,4 @@
-import { IBook } from '../../containers/librari/LibrariContainer'
+import { IBook } from '../../containers/client/librari/LibrariContainer'
 
 type Props = {
   book: IBook

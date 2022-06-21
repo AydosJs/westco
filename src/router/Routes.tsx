@@ -6,17 +6,21 @@ import MainContainer from "../layout/MainContainer";
 import RegisterContainer from "../containers/auth/RegisterContainer";
 import LoginContainers from "../containers/auth/SignInContainers";
 import AuthRoute from "./AuthRoute";
-import LibrariContainer from "../containers/librari/LibrariContainer";
-import UserPageContainer from "../containers/user/UserPageContainer";
-import LibrariViewContainer from "../containers/librari/LibrariViewContainer";
-import CoursesContainer from "../containers/courses/CoursesContainer";
-import CoursesViewContainer from "../containers/courses/CoursesViewContainer";
-import CategoriesContainer from "../containers/categories/CategoriesContainer";
-import CategoriesViewContainer from "../containers/categories/CategoriesViewContainer";
+import LibrariContainer from "../containers/client/librari/LibrariContainer";
+import UserPageContainer from "../containers/client/user/UserPageContainer";
+import LibrariViewContainer from "../containers/client/librari/LibrariViewContainer";
+import CoursesContainer from "../containers/client/courses/CoursesContainer";
+import CoursesViewContainer from "../containers/client/courses/CoursesViewContainer";
+import CategoriesContainer from "../containers/client/categories/CategoriesContainer";
+import CategoriesViewContainer from "../containers/client/categories/CategoriesViewContainer";
+import LibrariList from "../containers/admin/librari/LibrariList";
+import SignInAdminProfileContainer from "../containers/admin/profile/crud/SignInAdminProfileContainer";
+import AdminProfileContainer from "../containers/admin/profile/AdminProfileContainer";
 
 export default function AppRouter() {
   return (
     <Routes>
+
       <Route element={<AuthRoute />}>
         <Route path="/register" element={<RegisterContainer />} />
         <Route path="/sign-in" element={<LoginContainers />} />
@@ -33,7 +37,17 @@ export default function AppRouter() {
 
         <Route path='/categories' element={<CategoriesContainer />} />
         <Route path='/categories/:id' element={<CategoriesViewContainer />} />
+
+        {/* ADMIN */}
+        <Route path='/admin/sign-in' element={<SignInAdminProfileContainer />} />
+        <Route path='/admin/profile' element={<AdminProfileContainer />} />
+        <Route path='/admin/library-list' element={<LibrariList />} />
+
+
       </Route>
+
+
+
 
 
       <Route
