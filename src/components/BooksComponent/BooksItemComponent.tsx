@@ -6,8 +6,8 @@ type Props = {
 
 export default function BooksItemComponent({ book }: Props) {
   return (
-    <div className="w-full group hover:shadow-lg min-h-[346px]">
-      <div className="bg-white p-4 rounded-lg">
+    <div className="w-full group hover:shadow-lg min-h-[346px] bg-white p-4 rounded-lg h-fit">
+      <div className="">
         <img className="h-40 rounded w-full object-cover object-center mb-6" src={!book?.imgUrl ? book?.imgUrl : 'https://images.assetsdelivery.com/compings_v2/yehorlisnyi/yehorlisnyi2104/yehorlisnyi210400016.jpg'} alt="content" />
         <h3 className="tracking-widest text-purple-500 text-xs font-medium title-font">SUBTITLE</h3>
         <h2 className="text-lg text-gray-900 font-medium title-font mb-2  line-clamp-1 first-letter:uppercase">
