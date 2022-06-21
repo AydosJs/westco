@@ -1,9 +1,9 @@
-import Button from '../../../../components/form-elements/Button'
-import TextField from '../../../../components/form-elements/TextField'
+import Button from '../../../components/form-elements/Button'
+import TextField from '../../../components/form-elements/TextField'
 import * as Yup from 'yup';
 import { useFormik } from "formik";
 import { useContext } from 'react';
-import { AuthContext } from '../../../../providers/AuthProvider';
+import { AuthContext } from '../../../providers/AuthProvider';
 
 
 export interface AdminPayload {
@@ -47,7 +47,13 @@ export default function SignInAdminProfileContainer() {
         </div>
 
         <div className='flex flex-col'>
-          <TextField id='fullName' name='fullName' value={formik.values.fullName} onChange={formik.handleChange} label='Full name' placeholder='Admin' />
+          <TextField
+            id='fullName'
+            name='fullName'
+            value={formik.values.fullName}
+            onChange={formik.handleChange}
+            label='Full name'
+            placeholder='Admin' />
           <TextField id='passwords' name='password' value={formik.values.password} onChange={formik.handleChange} type='password' label='Passwords' placeholder='' />
         </div>
 

@@ -24,7 +24,11 @@ export interface IAuther {
 export interface IBook {
   _id?: string,
   name: string,
-  imgUrl: string
+  imgUrl: string,
+  authorId?: string,
+  categoryId?: string,
+  ebookUrl?: string,
+  description: string,
 
   author?: IAuther
 }

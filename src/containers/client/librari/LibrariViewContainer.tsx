@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import toast from "react-hot-toast";
-import { useNavigate, useParams } from "react-router-dom"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 import { getBookitem } from "../../../api/librariApi";
 import Button from "../../../components/form-elements/Button";
 import { AuthContext } from "../../../providers/AuthProvider";
@@ -13,7 +13,6 @@ export default function LibrariViewContainer() {
   const [bookItem, setBookItem] = useState({} as IBook)
   const { id } = useParams()
   const navigate = useNavigate();
-
 
   const getLibrariItem = async () => {
     try {
@@ -45,7 +44,7 @@ export default function LibrariViewContainer() {
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
           <div className="flex flex-col bg-white rounded w-full lg:w-2/2 xl:w-1/3 p-6 divide-y h-fit">
             <div className="flex justify-center mb-6">
-              <img className="w-full rounded " src={'https://charlottesometimesgoestothemovies.files.wordpress.com/2020/03/books.jpg'} />
+              <img className="w-full rounded " src={bookItem?.imgUrl !== 'img/img-a463268af6f271bc3adac0871d505b4a.jpg' ? bookItem?.imgUrl : 'https://charlottesometimesgoestothemovies.files.wordpress.com/2020/03/books.jpg'} />
             </div>
             <div className="flex flex-row py-3 border-none">
               <p className="text-md font-medium w-1/2 sm:w-1/2 md:w-2/3 lg:w-1/3 text-gray-600 flex flex-row flex-nowrap space-x-2 items-center">
@@ -106,19 +105,35 @@ export default function LibrariViewContainer() {
                 <p className="text-md font-medium w-1/2 sm:w-1/2 md:w-2/3 lg:w-2/3 text-gray-900 first-letter:uppercase">{bookItem?.author?.fullName}</p>
               </div>
             )}
+            <div className="flex flex-col py-3 items-start">
+              <p className="text-sm font-medium w-full text-gray-600 flex flex-row flex-nowrap space-x-2 items-center">
+                <span >
+                  Description:
+                </span>
+              </p>
+              <p className="text-sm font-medium mt-4 w-full text-gray-900 first-letter:uppercase whitespace-normal overflow-hidden">{bookItem?.description}</p>
+            </div>
 
-            <Button className={'mt-6'}
-              onClick={() => {
-                if (isLoggedIn) {
-                  toast.success('Now you can read this book any time :)');
-                } else {
-                  toast.error('Please register first');
-                  navigate('/register')
-                }
-              }}
-            >
-              READ THIS BOOK
-            </Button>
+            <div>
+              <Button className={'mt-6'}
+                onClick={() => {
+                  if (isLoggedIn) {
+                    // toast.success('Now you can read this book any time :)');
+                    navigate(bookItem?.ebookUrl!)
+                  } else {
+                    toast.error('Please register first');
+                    navigate('/register')
+                  }
+                }}
+                icon={<span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+                  </svg>
+                </span>}
+              >
+                READ EBOOK
+              </Button>
+            </div>
 
           </div>
 

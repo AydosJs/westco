@@ -4,7 +4,7 @@ import { AuthContext } from "../providers/AuthProvider";
 
 export default function Navigation() {
   const { pathname } = useLocation()
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, isAdmin } = useContext(AuthContext);
 
 
   return (
@@ -20,7 +20,7 @@ export default function Navigation() {
         {/* CLIENT */}
         <ul className="flex flex-col space-y-2">
           <li className="p-2 rounded flex flex-row flex-nowrap space-x-2 items-center text-sm font-medium text-slate-500 hover:text-blue-500 group">
-            <p className="text-xs font-medium text-gray-400">MAIN</p>
+            <p className="text-xs font-medium text-gray-400">CLIENT</p>
           </li>
 
           <span className="w-full border-b"></span>
@@ -59,41 +59,42 @@ export default function Navigation() {
 
 
         {/* ADMIN */}
-        <ul className="flex flex-col space-y-2">
-          <li className="p-2 rounded flex flex-row flex-nowrap space-x-2 items-center text-sm font-medium text-slate-500 hover:text-blue-500 group">
-            <p className="text-xs font-medium text-gray-400">ADMIN PANEL</p>
-          </li>
-
-          <span className="w-full border-b"></span>
-
-
-          <Link to="/admin/library-list">
-            <li className={`${pathname === '/admin/library-list' ? 'text-blue-500' : 'text-slate-500 '} p-2 rounded flex flex-row flex-nowrap space-x-4 items-center text-sm font-medium hover:text-blue-500 group cursor-pointer`}>
-              <span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
-              </span>
-              <h6 className=" text-md font-medium">Create Books</h6>
+        {isAdmin ? (
+          <ul className="flex flex-col space-y-2">
+            <li className="p-2 rounded flex flex-row flex-nowrap space-x-2 items-center text-sm font-medium text-slate-500 hover:text-blue-500 group">
+              <p className="text-xs font-medium text-gray-400">ADMIN PANEL</p>
             </li>
-          </Link>
-          <Link to="/admin/courses-list">
-            <li className={`${pathname === '/admin/courses-list' ? 'text-blue-500' : 'text-slate-500 '} p-2 rounded flex flex-row flex-nowrap space-x-4 items-center text-sm font-medium hover:text-blue-500 group cursor-pointer`}>
-              <span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </span>
-              <h6 className=" text-md font-medium">Create Courses</h6>
-            </li>
-          </Link>
-        </ul>
+
+            <span className="w-full border-b"></span>
+
+
+            <Link to="/admin/book-list">
+              <li className={`${pathname === '/admin/library-list' ? 'text-blue-500' : 'text-slate-500 '} p-2 rounded flex flex-row flex-nowrap space-x-4 items-center text-sm font-medium hover:text-blue-500 group cursor-pointer`}>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                </span>
+                <h6 className=" text-md font-medium">Create Books</h6>
+              </li>
+            </Link>
+            <Link to="/admin/courses-list">
+              <li className={`${pathname === '/admin/courses-list' ? 'text-blue-500' : 'text-slate-500 '} p-2 rounded flex flex-row flex-nowrap space-x-4 items-center text-sm font-medium hover:text-blue-500 group cursor-pointer`}>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </span>
+                <h6 className=" text-md font-medium">Create Courses</h6>
+              </li>
+            </Link>
+          </ul>
+        ) : null}
+
       </div>
 
       {/* PROFILE */}
       <div className="flex-col space-y-4 mb-4">
-
-
         <ul className="flex flex-col space-y-2 ">
           <span className="w-full border-b"></span>
           <Link to="/admin/profile">
@@ -103,7 +104,7 @@ export default function Navigation() {
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </span>
-              <h6 className=" text-md font-medium">Admin profile</h6>
+              <h6 className=" text-md font-medium"> {isAdmin ? 'Admin profile' : 'Sign-in Admin profile'}</h6>
             </li>
           </Link>
           {isLoggedIn && (

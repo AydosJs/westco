@@ -56,6 +56,7 @@ export default function UserPageContainer() {
         <div className="bg-white rounded flex flex-col space-y-4 w-2/3">
 
         </div>
-      </div></>
+      </div>
+    </>
   )
 }

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { AuthPayload } from '../containers/auth/RegisterContainer';
 import { signInAdmin } from '../api/admin/adminApi';
-import { AdminPayload } from '../containers/admin/profile/crud/SignInAdminProfileContainer';
+import { AdminPayload } from '../containers/admin/profile/SignInAdminProfileContainer';
 
 
 export interface AuthContextType {
@@ -92,6 +92,7 @@ export default function AuthProvider({ children }: Props) {
       .then((res: any) => {
         setTokenAdmin({ token: res.data?.data?.token })
         setIsAdmin(true)
+        Cookies.set('tokenAdmin', res.data?.data?.token);
         toast.success('Successfully logged in');
         navigate('/admin/profile');
       })
