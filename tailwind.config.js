@@ -3,6 +3,8 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
   content: ["./src/**/*.{js,jsx,ts,tsx,html}", "./public/index.html"],
 }
