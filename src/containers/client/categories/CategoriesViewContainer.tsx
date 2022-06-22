@@ -43,7 +43,7 @@ export default function CategoriesViewContainer() {
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
           <div className="flex flex-col bg-white rounded w-full lg:w-2/2 xl:w-1/3 p-6 divide-y h-fit">
             <div className="flex justify-center mb-6">
-              <img className="w-full rounded " src={`https://coursesnodejs.herokuapp.com/${categorieItem?.imgUrl}`} alt={categorieItem?.name} />
+              <img className="w-full rounded " src={categorieItem?.imgUrl ? `https://coursesnodejs.herokuapp.com/${categorieItem?.imgUrl}` : 'https://www.sicilywelcome.com/assets/images/placeholders/no-img-placeholder.png'} alt={categorieItem?.name} />
             </div>
 
             <div className="flex flex-row py-3 border-none items-start">

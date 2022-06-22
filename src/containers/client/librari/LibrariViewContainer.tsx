@@ -43,7 +43,7 @@ export default function LibrariViewContainer() {
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
           <div className="flex flex-col bg-white rounded w-full lg:w-2/2 xl:w-1/3 p-6 divide-y h-fit">
             <div className="flex justify-center mb-6">
-              <img className="w-full rounded " src={`https://coursesnodejs.herokuapp.com/${bookItem?.imgUrl}`} />
+              <img className="w-full rounded " src={bookItem?.imgUrl ? `https://coursesnodejs.herokuapp.com/${bookItem?.imgUrl}` : 'https://www.sicilywelcome.com/assets/images/placeholders/no-img-placeholder.png'} />
             </div>
             <div className="flex flex-row py-3 border-none">
               <p className="text-md font-medium w-1/2 sm:w-1/2 md:w-2/3 lg:w-1/3 text-gray-600 flex flex-row flex-nowrap space-x-2 items-center">
@@ -132,17 +132,26 @@ export default function LibrariViewContainer() {
               >
                 READ BOOK
               </Button>
-              <a target={'_blank'} href={`${bookItem?.ebookUrl}`}>
-                <Button className={'mt-4 bg-green-400 hover:bg-green-500'}
-                  icon={<span>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                    </svg>
-                  </span>}
-                >
-                  LINK TO EBOOK
-                </Button>
-              </a>
+              {
+                bookItem?.ebookUrl ? (
+                  <a target={'_blank'} href={`${bookItem?.ebookUrl}`}>
+                    <Button className={'mt-4 bg-green-400 hover:bg-green-500'}
+                      icon={<span>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                        </svg>
+                      </span>}
+                    >
+                      LINK TO EBOOK
+                    </Button>
+                  </a>
+                ) : (
+                  <Button disabled className={'mt-4 bg-green-200 hover:bg-green-200 cursor-not-allowed'}
+                  >
+                    NO EBOOK LINK
+                  </Button>
+                )
+              }
             </div>
 
           </div>

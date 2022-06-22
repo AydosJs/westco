@@ -14,7 +14,7 @@ export interface ICourse {
   _id?: string,
   name: string,
   imgUrl: string,
-  description: string
+  description: string,
 }
 
 export default function CoursesContainer() {
@@ -71,7 +71,6 @@ export default function CoursesContainer() {
     }
   }
 
-  console.log('courses', courses)
   return (
     <>
       {loader && <LoaderContainer />}
