@@ -118,7 +118,7 @@ export default function LibrariContainer() {
         </div>
       </div> */}
 
-      <InfiniteScroll
+      {/* <InfiniteScroll
         // pageStart={0}
         dataLength={books.items?.length}
         next={() => updateBooks({ ...filter, offset: books?.items?.length })}
@@ -129,17 +129,17 @@ export default function LibrariContainer() {
         }
         loader={<LoaderCrads />}
 
-      >
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 min-h-screen content-start gap-4 h-full">
-          {books.total != 0 && books.items.map((book: IBook) => (
-            <Link to={`/librari/${book?._id}`} key={book?._id}>
-              <BooksItemComponent book={book} />
-            </Link>
-          ))}
+      > */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 min-h-screen content-start gap-4 h-full">
+        {books.total != 0 && books.items.map((book: IBook) => (
+          <Link to={`/librari/${book?._id}`} key={book?._id}>
+            <BooksItemComponent book={book} />
+          </Link>
+        ))}
 
-        </div>
+      </div>
 
-      </InfiniteScroll>
+      {/* </InfiniteScroll> */}
 
     </>
   )

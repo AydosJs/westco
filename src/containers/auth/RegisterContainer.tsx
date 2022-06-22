@@ -41,7 +41,14 @@ export default function RegisterContainer() {
               Sign-in
             </Link>
           </p>
+          <p className="text-gray-600 font-normal mt-2 text-md border-t pt-2">
+            Agar Sign-up qila olmasangiz Login qiling ! Agar login ham qila olmasangiz
+            <strong className="ml-2 font-medium">
+              Iltimos login va parolingizni qayta tekshirib koring !
+            </strong>
+          </p>
         </div>
+
 
         <div >
           <div>
@@ -79,6 +86,6 @@ export default function RegisterContainer() {
 
       </form>
 
-    </section>
+    </section >
   )
 }
