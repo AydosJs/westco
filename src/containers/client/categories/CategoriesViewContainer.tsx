@@ -89,7 +89,7 @@ export default function CategoriesViewContainer() {
           </div>
 
           {categorieItem?.books?.length !== 0 ? (
-            <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 rounded w-full lg:w-2/2 xl:w-2/3 px-6">
+            <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 rounded w-full lg:w-2/2 xl:w-2/3 p-0 lg:px-6">
               {categorieItem?.books?.map((item: IBook) => (
                 <Link to={`/librari/${item?._id}`} key={item?._id}>
                   <BooksItemComponent book={item} />

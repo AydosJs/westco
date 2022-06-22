@@ -20,6 +20,9 @@ import CreateBookContainer from "../containers/admin/librari/crud/CreateBookCont
 import CoursesList from "../containers/admin/courses/CoursesList";
 import CreateCourseContainer from "../containers/admin/courses/crud/CreateCourseContainer";
 import EditBookContainer from "../containers/admin/librari/crud/EditBookContainer";
+import CategorieList from "../containers/admin/categorie/CategorieList";
+import EditCategorieContainer from "../containers/admin/categorie/crud/EditCategorieContainer";
+import CreateCategorieContainer from "../containers/admin/categorie/crud/CreateCategorieContainer";
 
 export default function AppRouter() {
   return (
@@ -52,6 +55,10 @@ export default function AppRouter() {
 
         <Route path='/admin/courses-list' element={<CoursesList />} />
         <Route path='/admin/create-course' element={<CreateCourseContainer />} />
+
+        <Route path='/admin/categorie-list' element={<CategorieList />} />
+        <Route path='/admin/create-categorie' element={<CreateCategorieContainer />} />
+        <Route path='/admin/edit-categorie/:id' element={<EditCategorieContainer />} />
 
       </Route>
 

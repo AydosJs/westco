@@ -13,7 +13,7 @@ type Props = {
   handleSubmit: (data: any) => void,
   title: string
 }
-export default function BookFormContaienr({ formik, handleSubmit, title }: Props) {
+export default function CategorieFormContaienr({ formik, handleSubmit, title }: Props) {
   const { loader, setLoader } = useContext(AuthContext);
   const filter: IQueryFilter = DEFAULT_FILTER
   const [categories, setCategories] = useState([] as ICategorie[])
@@ -49,69 +49,30 @@ export default function BookFormContaienr({ formik, handleSubmit, title }: Props
       <div className="flex flex-col">
         <div>
           <TextField
-            placeholder="Book"
+            label="Categorie title"
+            placeholder="Categorie"
             name="name"
             id="name"
             value={formik.values.name}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            label="Book title"
           />
           <HelperText show={formik.touched.name} message={formik.errors.name} />
         </div>
 
         <div>
           <TextField
+            label="Categorie Image"
             placeholder="imgUrl"
             name="imgUrl"
             id="imgUrl"
             value={formik.values.imgUrl}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            label="Image"
           />
           <HelperText show={formik.touched.imgUrl} message={formik.errors.imgUrl} />
         </div>
 
-        <div className="mb-2">
-          <label htmlFor="countries" className="block mb-2 text-sm font-medium  dark:text-gray-600">Select categorie</label>
-          <select
-            id="categoryId"
-            name="categoryId"
-            onChange={formik.handleChange}
-            className="w-full bg-white rounded border outline-none text-gray-700 border-gray-300 text-sm block p-2.5 cursor-pointer ">
-            {(categories?.length !== 0 && !loader) ? categories.map((item: ICategorie) => (
-              <option key={item?._id} value={item?._id}>{item?.name}</option>
-            )) : <option disabled selected>Loadinggg....</option>}
-          </select>
-          <HelperText show={formik.touched.categoryId} message={formik.errors.categoryId} />
-        </div>
-
-        <div>
-          <TextField
-            placeholder="ebookUrl"
-            name="ebookUrl"
-            id="ebookUrl"
-            value={formik.values.ebookUrl}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            label="EBook Url"
-          />
-          <HelperText show={formik.touched.ebookUrl} message={formik.errors.ebookUrl} />
-        </div>
-
-        <div className="mb-2">
-          <label htmlFor="description" className="leading-7 text-sm font-medium text-gray-600 ">Description</label>
-          <textarea
-            id="description"
-            name="description"
-            value={formik.values.description}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            rows={4}
-            className="block p-2.5 w-full text-sm border rounded "
-            placeholder="Description..." />
-        </div>
       </div>
 
       <div>

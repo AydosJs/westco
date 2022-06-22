@@ -7,6 +7,7 @@ import LoaderContainer from "../../loader/LoaderContainer";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { DEFAULT_FILTER } from "../../../constants/Constants";
 import LoaderCrads from "../../loader/LoaderCrads";
+import TextField from "../../../components/form-elements/TextField";
 
 
 export interface PageableData<T> {
@@ -50,12 +51,10 @@ export default function LibrariContainer() {
     limit: filter?.limit
   })
 
-  // ?page=1&limit=13
   const getLibrari = async () => {
     try {
       if (loader) return
       setLoader(true)
-      // setBooks({} as PageableData<IBook>)
       const res = await getBooks(filter)
       setBooks({
         ...books,
@@ -97,10 +96,27 @@ export default function LibrariContainer() {
     }
   }
 
-  console.log('books', books)
   return (
     <>
       {loader && <LoaderContainer />}
+
+      {/* Search */}
+      {/* <div className="mt-2 flex flex-row space-x-2">
+        <div className="w-5/6">
+          <TextField className="rounded-lg" placeholder="search..." />
+        </div>
+        <div className="mb-2 w-1/6">
+          <select
+            id="categoryId"
+            name="categoryId"
+            className="w-full bg-white rounded border outline-none text-gray-700 border-gray-300 text-sm block p-2.5 cursor-pointer ">
+            <option value={'USA'}>USA</option>
+            <option value={'USA'}>USA</option>
+            <option value={'USA'}>USA</option>
+            <option value={'USA'}>USA</option>
+          </select>
+        </div>
+      </div> */}
 
       <InfiniteScroll
         // pageStart={0}

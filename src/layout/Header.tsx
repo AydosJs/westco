@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import TextField from "../components/form-elements/TextField";
 import { AuthContext } from "../providers/AuthProvider";
 interface Props {
   toggleMenu: any
@@ -7,17 +8,23 @@ interface Props {
 
 export default function Header({ toggleMenu }: Props) {
 
-  const { isLoggedIn, loader, setLoader, token } = useContext(AuthContext);
+  const { isLoggedIn, token } = useContext(AuthContext);
 
 
   return (
     <header className="p-6 w-full bg-white fixed z-20 border-b left-0 top-0 h-fit">
       <div className="flex flex-row justify-between items-center h-full">
-        <div>
+
+        <div >
           <Link to="/librari">
             <h6 className="text-xl font-bold">WESTCO</h6>
           </Link>
         </div>
+
+        {/* <div>
+          <TextField className="rounded-lg p-2" placeholder="search..." />
+        </div> */}
+
         <div className="flex flex-row space-x-2 items-center">
 
           {isLoggedIn && <Link className="hidden lg:block text-gray-600 hover:text-blue-500" to="/user-profile">

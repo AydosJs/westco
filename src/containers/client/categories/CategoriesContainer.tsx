@@ -16,7 +16,7 @@ export interface ICategorie {
   _id?: string,
   name: string,
   imgUrl: string,
-  books: IBook[]
+  books?: IBook[]
 }
 
 export default function CategoriesContainer() {

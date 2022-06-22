@@ -1,4 +1,4 @@
-import { getAdmin } from "./ApiAdmin";
+import { getAdmin, postAdmin, putAdmin } from "./ApiAdmin";
 
 export function getCategoriesAdmin(data?: object) {
   return getAdmin<any>('https://coursesnodejs.herokuapp.com/employee/category', data);
@@ -6,4 +6,12 @@ export function getCategoriesAdmin(data?: object) {
 
 export function getCategorieAdmin(id: string) {
   return getAdmin<any>(`https://coursesnodejs.herokuapp.com/employee/category/${id}`);
+}
+
+export function createCategorieAdmin(data: object) {
+  return postAdmin<any>(`https://coursesnodejs.herokuapp.com/employee/category`, data);
+}
+
+export function updateCategorieAdmin(data?: object) {
+  return putAdmin<any>('https://coursesnodejs.herokuapp.com/employee/category', data);
 }
