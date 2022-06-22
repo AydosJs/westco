@@ -34,8 +34,8 @@ export default function UserPageContainer() {
   return (
     <>
       {loader && <LoaderContainer />}
-      <div className="flex flexr-row space-x-4">
-        <div className="flex flex-col bg-white rounded w-1/3 p-6 divide-y">
+      <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row lg:flex-row md:space-x-4">
+        <div className="flex flex-col bg-white rounded p-6 divide-y md:w-3/6 lg:w-1/3">
           <div className="flex justify-center mb-6 py-4">
             <img className="w-44 rounded-full p-2.5 border" src="https://faeziedu.ir/wp-content/uploads/2021/05/avatar.jpg.320x320px.jpg" alt={user.fullName} />
           </div>
@@ -53,8 +53,7 @@ export default function UserPageContainer() {
           </Button>
 
         </div>
-        <div className="bg-white rounded flex flex-col space-y-4 w-2/3">
-
+        <div className="bg-white rounded flex flex-col space-y-4 md:w-3/6 lg:w-2/3">
         </div>
       </div>
     </>

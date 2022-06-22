@@ -35,7 +35,7 @@ export default function RegisterContainer() {
       <form className="w-full sm:w-4/6 lg:w-1/3 p-10 min-h-[469px] py-12 rounded bg-white flex flex-col justify-around space-y-6 max-w-xl" onSubmit={formik.handleSubmit}>
 
         <div>
-          <h2 className="text-gray-900 text-4xl mb-1 font-medium title-font">Register</h2>
+          <h2 className="text-gray-900 text-4xl mb-1 font-medium title-font">Sign-Up</h2>
           <p className="leading-relaxed text-gray-600 font-medium">If you have already registered:&nbsp;
             <Link to="/sign-in" className="hover:underline text-blue-500 font-medium">
               Sign-in
@@ -73,7 +73,7 @@ export default function RegisterContainer() {
 
         <div className="w-full">
           <Button type="submit" >
-            Register
+            SUBMIT
           </Button>
         </div>
 

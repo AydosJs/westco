@@ -40,7 +40,7 @@ export default function SignInAdminProfileContainer() {
   return (
     <div className='flex item-center h-full items-center justify-center'>
 
-      <form className='p-8 border bg-white rounded flex flex-col space-y-6 w-2/6' onSubmit={formik.handleSubmit}>
+      <form className='p-8 border bg-white rounded flex flex-col space-y-6 w-6/6 sm:w-4/6 md:w-4/6 lg:w-2/6' onSubmit={formik.handleSubmit}>
         <div>
           <h1 className='text-2xl mb-2 font-normal'>Admin profile</h1>
           <p className='text-sm text-gray-600 font-normal'>By creating admin profile you would get an access to create and delete datas in this platform</p>

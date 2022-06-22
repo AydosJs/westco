@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { AuthPayload } from '../containers/auth/RegisterContainer';
 import { signInAdmin } from '../api/admin/adminApi';
 import { AdminPayload } from '../containers/admin/profile/SignInAdminProfileContainer';
+import { IAdmin } from '../containers/admin/profile/AdminProfileContainer';
 
 
 export interface AuthContextType {
@@ -17,6 +18,8 @@ export interface AuthContextType {
   register: (payload: AuthPayload) => Promise<unknown>;
   signInAdminFn: (payload: AdminPayload) => Promise<unknown>;
   setLoader: any;
+  setAsLoggedOut: any,
+  admin: IAdmin
 }
 
 export interface IUser {
@@ -46,6 +49,7 @@ export default function AuthProvider({ children }: Props) {
   } as TokenResponse);
   const [isLoggedIn, setLoggedIn] = useState<boolean>(Boolean(token?.token));
   const [isAdmin, setIsAdmin] = useState<boolean>(Boolean(tokenAdmin?.token));
+  const [admin, setAdmin] = useState<IAdmin>(null as any);
   const [loader, setLoader] = useState<boolean>(false);
   const navigate = useNavigate();
 
@@ -59,6 +63,15 @@ export default function AuthProvider({ children }: Props) {
     }
 
     return resp;
+  };
+  const setAsLoggedOut = () => {
+    setToken({ token: '' });
+    setLoggedIn(false);
+    setIsAdmin(false);
+    Cookies.set('token', '');
+    Cookies.set('tokenAdmin', '');
+    toast.success('Successfully logged out');
+    navigate('/librari');
   };
 
   const setCatchLogin = (error: Error) => {
@@ -87,10 +100,13 @@ export default function AuthProvider({ children }: Props) {
   };
 
   const signInAdminFn = (payload: AdminPayload) => {
+    // console.log("PAYLOAD AMDIN LOGIN", payload)
     setLoader(true);
     return signInAdmin(payload)
       .then((res: any) => {
         setTokenAdmin({ token: res.data?.data?.token })
+        setAdmin(res.data.data?.employee)
+        // console.log('redponse admin', res.data.data)
         setIsAdmin(true)
         Cookies.set('tokenAdmin', res.data?.data?.token);
         toast.success('Successfully logged in');
@@ -106,7 +122,7 @@ export default function AuthProvider({ children }: Props) {
   };
 
 
-  const value = { token, loader, isLoggedIn, signIn, register, setLoader, isAdmin, signInAdminFn };
+  const value = { token, loader, isLoggedIn, signIn, register, setLoader, isAdmin, signInAdminFn, setAsLoggedOut, admin };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

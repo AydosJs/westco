@@ -8,10 +8,10 @@ interface Props {
 
 export default function Navigation({ open, toggleMenu }: Props) {
   const { pathname } = useLocation()
-  const { isLoggedIn, isAdmin } = useContext(AuthContext);
+  const { isLoggedIn, isAdmin, setAsLoggedOut } = useContext(AuthContext);
 
   return (
-    <div onClick={toggleMenu} className={` ${open ? 'w-full' : null} lg:w-fit  bg-black z-20   bg-opacity-30 fixed top-0 left-0 h-full`}>
+    <div onClick={() => toggleMenu()} className={` ${open ? 'w-full' : null} lg:w-fit  bg-black z-20   bg-opacity-30 fixed top-0 left-0 h-full`}>
       <nav className={`${open ? 'flex' : 'hidden'} transition-hidden duration-75 lg:flex max-w-[256px] fixed lefy-0 min-w-[256px] h-full min-h-screen bg-white border-r px-4 py-2.5 flex-col justify-between`}>
 
         <div className="flex-col space-y-4">
@@ -23,11 +23,14 @@ export default function Navigation({ open, toggleMenu }: Props) {
 
           {/* CLIENT */}
           <ul className="flex flex-col space-y-2 mt-24">
-            <li className="p-2 rounded flex flex-row flex-nowrap space-x-2 items-center text-sm font-medium text-slate-500 hover:text-blue-500 group">
-              <p className="text-xs font-medium text-gray-400">CLIENT</p>
-            </li>
 
-            <span className="w-full border-b "></span>
+            {isAdmin && (
+              <>
+                <li className="p-2 rounded flex flex-row flex-nowrap space-x-2 items-center text-sm font-medium text-slate-500 hover:text-blue-500 group">
+                  <p className="text-xs font-medium text-gray-400">CLIENT</p>
+                </li>
+                <span className="w-full border-b "></span></>
+            )}
 
             <Link to="/librari">
               <li className={`${pathname === '/librari' ? 'text-blue-500' : 'text-slate-500 '} p-2 rounded flex flex-row flex-nowrap space-x-4 items-center text-sm font-medium hover:text-blue-500 group cursor-pointer`}>
@@ -95,12 +98,51 @@ export default function Navigation({ open, toggleMenu }: Props) {
             </ul>
           ) : null}
 
+
         </div>
 
         {/* PROFILE */}
         <div className="flex-col space-y-4 mb-4">
           <ul className="flex flex-col space-y-2 ">
+
+            {
+              !isLoggedIn && (
+                <div className="block lg:hidden">
+                  <Link to="/sign-in">
+                    <li className={`p-2 rounded text-slate-500  flex flex-row flex-nowrap space-x-4 items-center text-sm font-medium hover:text-blue-500 group cursor-pointer`}>
+                      <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                      </span>
+                      <h6 className=" text-md font-medium">Sign-In</h6>
+                    </li>
+                  </Link>
+                  <Link to="/register">
+                    <li className={`p-2 rounded text-slate-500  flex flex-row flex-nowrap space-x-4 items-center text-sm font-medium hover:text-blue-500 group cursor-pointer`}>
+                      <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                      </span>
+                      <h6 className=" text-md font-medium">Sign-Up</h6>
+                    </li>
+                  </Link>
+                </div>
+              )
+            }
+
             <span className="w-full border-b"></span>
+            {isLoggedIn && (
+              <li onClick={() => setAsLoggedOut()} className={`text-slate-500  p-2 rounded flex flex-row flex-nowrap space-x-4 items-center text-sm font-medium hover:text-blue-500 group cursor-pointer`}>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                  </svg>
+                </span>
+                <h6 className=" text-md font-medium">Log-out</h6>
+              </li>
+            )}
             <Link to="/admin/profile">
               <li className={`${pathname === '/admin/profile' ? 'text-blue-500' : 'text-slate-500 '} p-2 rounded flex flex-row flex-nowrap space-x-4 items-center text-sm font-medium hover:text-blue-500 group cursor-pointer`}>
                 <span>
@@ -123,6 +165,7 @@ export default function Navigation({ open, toggleMenu }: Props) {
                 </li>
               </Link>
             )}
+
           </ul>
         </div>
 
