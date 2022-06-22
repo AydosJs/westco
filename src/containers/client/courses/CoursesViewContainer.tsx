@@ -43,13 +43,12 @@ export default function CoursesViewContainer() {
     <React.Fragment>
       {loader && <LoaderContainer />}
 
-
       {Object.keys(coursesItem).length !== 0 && (
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
 
           <div className="flex flex-col bg-white rounded w-full p-6 divide-y h-fit md:w-1/3 lg:w-2/2 xl:w-1/3">
             <div className="flex justify-center mb-6">
-              <img className="w-full rounded " src={coursesItem?.imgUrl && coursesItem?.imgUrl != 'img/img-a463268af6f271bc3adac0871d505b4a.jpg' ? coursesItem?.imgUrl : 'https://d1ymz67w5raq8g.cloudfront.net/Pictures/1024x536/P/web/n/z/b/onlinecourses_shutterstock_490891228_2000px_728945.jpg'} />
+              <img className="w-full rounded " src={`https://coursesnodejs.herokuapp.com/${coursesItem?.imgUrl}`} />
             </div>
             <div className="flex flex-row py-3 border-none items-start">
               <p className="text-sm font-medium w-1/2 sm:w-1/2 md:w-2/3 lg:w-1/3 text-gray-600 flex flex-row flex-nowrap space-x-2 items-center">

@@ -9,7 +9,7 @@ export default function CategoriesComponent({ categorie }: Props) {
   return (
     <div className="p-2 w-full bg-white rounded-lg hover:shadow-lg">
       <div className="h-full flex items-center  p-4 ">
-        <img alt="team" className="w-16 mr-4  h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full" src="https://dummyimage.com/94x94" />
+        <img alt="team" className="w-16 mr-4  h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full" src={`https://coursesnodejs.herokuapp.com/${categorie?.imgUrl}`} />
         {/* 
         <div className='w-16 h-16 border rounded-full flex items-center justify-center mr-4 bg-gray-100'>
           <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-gray-400" viewBox="0 0 20 20" fill="currentColor">

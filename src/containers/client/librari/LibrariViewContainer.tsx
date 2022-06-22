@@ -33,7 +33,6 @@ export default function LibrariViewContainer() {
     }
   }, [])
 
-  console.log('librariItem', bookItem)
 
 
   return (
@@ -44,7 +43,7 @@ export default function LibrariViewContainer() {
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
           <div className="flex flex-col bg-white rounded w-full lg:w-2/2 xl:w-1/3 p-6 divide-y h-fit">
             <div className="flex justify-center mb-6">
-              <img className="w-full rounded " src={bookItem?.imgUrl !== 'img/img-a463268af6f271bc3adac0871d505b4a.jpg' ? bookItem?.imgUrl : 'https://charlottesometimesgoestothemovies.files.wordpress.com/2020/03/books.jpg'} />
+              <img className="w-full rounded " src={`https://coursesnodejs.herokuapp.com/${bookItem?.imgUrl}`} />
             </div>
             <div className="flex flex-row py-3 border-none">
               <p className="text-md font-medium w-1/2 sm:w-1/2 md:w-2/3 lg:w-1/3 text-gray-600 flex flex-row flex-nowrap space-x-2 items-center">
