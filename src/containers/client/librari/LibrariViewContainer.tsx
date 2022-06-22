@@ -118,8 +118,8 @@ export default function LibrariViewContainer() {
               <Button className={'mt-6'}
                 onClick={() => {
                   if (isLoggedIn) {
-                    // toast.success('Now you can read this book any time :)');
-                    navigate(bookItem?.ebookUrl!)
+                    toast.success('Now you can read this book any time :)');
+                    // navigate(bookItem?.ebookUrl!)
                   } else {
                     toast.error('Please register first');
                     navigate('/register')

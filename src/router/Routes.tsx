@@ -17,6 +17,8 @@ import BooksList from "../containers/admin/librari/BooksList";
 import SignInAdminProfileContainer from "../containers/admin/profile/SignInAdminProfileContainer";
 import AdminProfileContainer from "../containers/admin/profile/AdminProfileContainer";
 import CreateBookContainer from "../containers/admin/librari/crud/CreateBookContainer";
+import CoursesList from "../containers/admin/courses/CoursesList";
+import CreateCourseContainer from "../containers/admin/courses/crud/CreateCourseContainer";
 
 export default function AppRouter() {
   return (
@@ -42,8 +44,12 @@ export default function AppRouter() {
         {/* ADMIN */}
         <Route path='/admin/sign-in' element={<SignInAdminProfileContainer />} />
         <Route path='/admin/profile' element={<AdminProfileContainer />} />
+
         <Route path='/admin/book-list' element={<BooksList />} />
         <Route path='/admin/create-book' element={<CreateBookContainer />} />
+
+        <Route path='/admin/courses-list' element={<CoursesList />} />
+        <Route path='/admin/create-course' element={<CreateCourseContainer />} />
 
       </Route>
 

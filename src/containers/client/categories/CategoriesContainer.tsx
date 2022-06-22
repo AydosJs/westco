@@ -88,7 +88,7 @@ export default function CategoriesContainer() {
         loader={<LoaderCrads />}
 
       >
-        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 min-h-screen ">
+        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 min-h-screen content-start ">
           {categories.total != 0 && categories.items.map((categorie: ICategorie) => (
             <Link to={`/categories/${categorie?._id}`} key={categorie?._id}>
               <CategoriesComponent categorie={categorie} />

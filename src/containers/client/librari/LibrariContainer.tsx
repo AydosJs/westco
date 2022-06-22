@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getBooks } from "../../../api/librariApi";
 import BooksItemComponent from "../../../components/BooksComponent/BooksItemComponent";
@@ -114,7 +114,7 @@ export default function LibrariContainer() {
         loader={<LoaderCrads />}
 
       >
-        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 min-h-screen">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 min-h-screen content-start gap-4 h-full">
           {books.total != 0 && books.items.map((book: IBook) => (
             <Link to={`/librari/${book?._id}`} key={book?._id}>
               <BooksItemComponent book={book} />

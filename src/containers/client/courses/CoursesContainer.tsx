@@ -87,8 +87,8 @@ export default function CoursesContainer() {
         loader={<LoaderCrads />}
 
       >
-        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 min-h-screen ">
-          {courses.total != 0 && courses.items.map((course: ICourse) => (
+        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 min-h-screen content-start">
+          {courses.total !== 0 && courses.items.map((course: ICourse) => (
             <Link to={`/courses/${course?._id}`} key={course?._id}>
               <CoursesComponent course={course} />
             </Link>

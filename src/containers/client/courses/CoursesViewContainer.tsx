@@ -48,7 +48,7 @@ export default function CoursesViewContainer() {
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
           <div className="flex flex-col bg-white rounded w-full lg:w-2/2 xl:w-1/3 p-6 divide-y h-fit">
             <div className="flex justify-center mb-6">
-              <img className="w-full rounded " src={'https://d1ymz67w5raq8g.cloudfront.net/Pictures/1024x536/P/web/n/z/b/onlinecourses_shutterstock_490891228_2000px_728945.jpg'} />
+              <img className="w-full rounded " src={coursesItem?.imgUrl && coursesItem?.imgUrl != 'img/img-a463268af6f271bc3adac0871d505b4a.jpg' ? coursesItem?.imgUrl : 'https://d1ymz67w5raq8g.cloudfront.net/Pictures/1024x536/P/web/n/z/b/onlinecourses_shutterstock_490891228_2000px_728945.jpg'} />
             </div>
             <div className="flex flex-row py-3 border-none items-start">
               <p className="text-sm font-medium w-1/2 sm:w-1/2 md:w-2/3 lg:w-1/3 text-gray-600 flex flex-row flex-nowrap space-x-2 items-center">
@@ -88,11 +88,11 @@ export default function CoursesViewContainer() {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                <span>
+                <span >
                   Description:
                 </span>
               </p>
-              <p className="text-sm font-medium mt-4 w-full text-gray-900 first-letter:uppercase">{coursesItem?.description}</p>
+              <p className="max-w-[400px] overflow-hidden text-ellipsis text-sm font-medium mt-4 w-full text-gray-900 first-letter:uppercase">{coursesItem?.description}</p>
             </div>
 
             <Button className={'mt-6'}

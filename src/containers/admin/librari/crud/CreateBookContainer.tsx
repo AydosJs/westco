@@ -10,14 +10,11 @@ import { ICategorie } from "../../../client/categories/CategoriesContainer";
 import { getCategoriesAdmin } from "../../../../api/admin/categorieApi";
 import { getAdminProfile } from "../../../../api/admin/adminApi";
 import { IAdmin } from "../../profile/AdminProfileContainer";
-import { createBookAmin } from "../../../../api/admin/BookApi";
+import { createBookAdmin } from "../../../../api/admin/BookApi";
 import toast from "react-hot-toast";
-import LoaderContainer from "../../../loader/LoaderContainer";
-import LoaderCrads from "../../../loader/LoaderCrads";
 import HelperText from "../../../../components/form-elements/HelperText";
 
 export default function CreateBookContainer() {
-  const { signInAdminFn } = useContext(AuthContext);
   const { loader, setLoader } = useContext(AuthContext);
   const filter: IQueryFilter = DEFAULT_FILTER
   const [categories, setCategories] = useState([] as ICategorie[])
@@ -44,8 +41,9 @@ export default function CreateBookContainer() {
           authorId: admin?._id
         }
         console.log("payload", payload)
-        await createBookAmin(payload)
+        await createBookAdmin(payload)
         toast.success('Book successfully created')
+        formik.resetForm()
       } catch (error) {
         toast.error('Book creation failed')
       }

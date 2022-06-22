@@ -8,6 +8,6 @@ export function getBookitemAdmin(id: string) {
   return getAdmin<any>(`https://coursesnodejs.herokuapp.com/employee/book/${id}`);
 }
 
-export function createBookAmin(data: object) {
+export function createBookAdmin(data: object) {
   return postAdmin<any>(`https://coursesnodejs.herokuapp.com/employee/book`, data);
 }
