@@ -15,11 +15,6 @@ export default function Navigation({ open, toggleMenu }: Props) {
       <nav className={`${open ? 'flex' : 'hidden'} transition-hidden duration-75 lg:flex max-w-[256px] fixed lefy-0 min-w-[256px] h-full min-h-screen bg-white border-r px-4 py-2.5 flex-col justify-between`}>
 
         <div className="flex-col space-y-4">
-          {/* <div className="py-4 rounded-lg ">
-    <Link to="/librari">
-      <h6 className="ml-2.5 text-xl font-bold">WESTCO</h6>
-    </Link>
-  </div> */}
 
           {/* CLIENT */}
           <ul className="flex flex-col space-y-2 mt-24">
@@ -29,7 +24,8 @@ export default function Navigation({ open, toggleMenu }: Props) {
                 <li className="p-2 rounded flex flex-row flex-nowrap space-x-2 items-center text-sm font-medium text-slate-500 hover:text-blue-500 group">
                   <p className="text-xs font-medium text-gray-400">CLIENT</p>
                 </li>
-                <span className="w-full border-b "></span></>
+                <span className="w-full border-b "></span>
+              </>
             )}
 
             <Link to="/librari">

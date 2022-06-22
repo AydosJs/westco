@@ -23,8 +23,13 @@ import EditBookContainer from "../containers/admin/librari/crud/EditBookContaine
 import CategorieList from "../containers/admin/categorie/CategorieList";
 import EditCategorieContainer from "../containers/admin/categorie/crud/EditCategorieContainer";
 import CreateCategorieContainer from "../containers/admin/categorie/crud/CreateCategorieContainer";
+import EditCourseContainer from "../containers/admin/courses/crud/EditCourseContainer";
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 
 export default function AppRouter() {
+  const { isAdmin, admin } = useContext(AuthContext);
+
   return (
     <Routes>
 
@@ -33,10 +38,14 @@ export default function AppRouter() {
         <Route path="/sign-in" element={<LoginContainers />} />
       </Route>
 
-      <Route element={<MainContainer />}>
+      <Route path="/"
+        // render={() => <UserPageContainer path="/user-profile" />}
+        element={<MainContainer />}
+      >
         <Route path='/user-profile' element={<UserPageContainer />} />
 
         <Route path='/librari' element={<LibrariContainer />} />
+        <Route path='/' element={<LibrariContainer />} />
         <Route path='/librari/:id' element={<LibrariViewContainer />} />
 
         <Route path='/courses' element={<CoursesContainer />} />
@@ -47,24 +56,26 @@ export default function AppRouter() {
 
         {/* ADMIN */}
         <Route path='/admin/sign-in' element={<SignInAdminProfileContainer />} />
-        <Route path='/admin/profile' element={<AdminProfileContainer />} />
 
-        <Route path='/admin/book-list' element={<BooksList />} />
-        <Route path='/admin/create-book' element={<CreateBookContainer />} />
-        <Route path='/admin/edit-book/:id' element={<EditBookContainer />} />
+        {isAdmin && (
+          <>
+            <Route path='/admin/profile' element={<AdminProfileContainer />} />
 
-        <Route path='/admin/courses-list' element={<CoursesList />} />
-        <Route path='/admin/create-course' element={<CreateCourseContainer />} />
+            <Route path='/admin/book-list' element={<BooksList />} />
+            <Route path='/admin/create-book' element={<CreateBookContainer />} />
+            <Route path='/admin/edit-book/:id' element={<EditBookContainer />} />
 
-        <Route path='/admin/categorie-list' element={<CategorieList />} />
-        <Route path='/admin/create-categorie' element={<CreateCategorieContainer />} />
-        <Route path='/admin/edit-categorie/:id' element={<EditCategorieContainer />} />
+            <Route path='/admin/courses-list' element={<CoursesList />} />
+            <Route path='/admin/create-course' element={<CreateCourseContainer />} />
+            <Route path='/admin/edit-course/:id' element={<EditCourseContainer />} />
+
+            <Route path='/admin/categorie-list' element={<CategorieList />} />
+            <Route path='/admin/create-categorie' element={<CreateCategorieContainer />} />
+            <Route path='/admin/edit-categorie/:id' element={<EditCategorieContainer />} />
+          </>
+        )}
 
       </Route>
-
-
-
-
 
       <Route
         path="*"

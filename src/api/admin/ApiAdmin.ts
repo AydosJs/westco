@@ -19,6 +19,10 @@ export function putAdmin<T>(url: string, data?: unknown): Promise<T> {
   return httpAxios.put(url, data);
 }
 
+export function deleteAdmin<T>(url: string): Promise<T> {
+  return httpAxios.delete(url);
+}
+
 
 httpAxios.interceptors.request.use(
   (config: AxiosRequestConfig) => {
