@@ -56,10 +56,10 @@ export default function AppRouter() {
 
         {/* ADMIN */}
         <Route path='/admin/sign-in' element={<SignInAdminProfileContainer />} />
+        <Route path='/admin/profile' element={<AdminProfileContainer />} />
 
         {isAdmin && (
           <>
-            <Route path='/admin/profile' element={<AdminProfileContainer />} />
 
             <Route path='/admin/book-list' element={<BooksList />} />
             <Route path='/admin/create-book' element={<CreateBookContainer />} />

@@ -31,7 +31,7 @@ export default function SignInContainers() {
   return (
     <section className=" flex justify-center items-center min-h-screen p-4">
 
-      <form className="w-full sm:w-4/6 lg:w-1/3 p-10 bg-white min-h-[469px] flex flex-col justify-around space-y-6 max-w-xl" onSubmit={formik.handleSubmit}>
+      <form className="w-full sm:w-4/6 lg:w-1/3 p-10 bg-white rounded min-h-[469px] flex flex-col justify-around space-y-6 max-w-xl" onSubmit={formik.handleSubmit}>
 
         <div>
           <h2 className="text-gray-900 text-4xl mb-1 font-medium title-font">Sign-In</h2>
