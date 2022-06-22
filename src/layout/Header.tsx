@@ -15,7 +15,11 @@ export default function Header({ toggleMenu }: Props) {
       <div className="flex flex-row justify-between items-center h-full">
 
         <div >
-          <Link to="/librari">
+          <Link to="/librari" className="flex flex-row space-x-2 items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" strokeWidth="2"
+              className="w-7 h-7 text-white p-1.5 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
             <h6 className="text-xl font-bold">WESTCO</h6>
           </Link>
         </div>
