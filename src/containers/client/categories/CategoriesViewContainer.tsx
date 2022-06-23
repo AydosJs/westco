@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { getCategorieItem } from "../../../api/categoriesApi";
 import BooksItemComponent from "../../../components/BooksComponent/BooksItemComponent";
-import Button from "../../../components/form-elements/Button";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { IBook } from "../librari/LibrariContainer";
 import LoaderContainer from "../../loader/LoaderContainer";
@@ -32,7 +31,6 @@ export default function CategoriesViewContainer() {
     }
   }, [])
 
-  console.log('categorieItem item', categorieItem)
   return (
     <React.Fragment>
       {loader && <LoaderContainer />}
@@ -91,7 +89,7 @@ export default function CategoriesViewContainer() {
           {categorieItem?.books?.length !== 0 ? (
             <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 rounded w-full lg:w-2/2 xl:w-2/3 p-0 lg:px-6">
               {categorieItem?.books?.map((item: IBook) => (
-                <Link to={`/librari/${item?._id}`} key={item?._id}>
+                <Link to={`/librari/${item?._id}`} key={item?._id} className="h-fit">
                   <BooksItemComponent book={item} />
                 </Link>
               ))}
