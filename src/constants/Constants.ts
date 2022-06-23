@@ -7,10 +7,11 @@ export const imgUrlController = (link: string) => {
   if( link === undefined) {
     return defaultImgeLink
   } 
-
+  
   if((link).match(regHttp)){
     return link
   } else if((link).match(regImg)){
+    // console.log("get link", `https://coursesnodejs.herokuapp.com/${link}`)
     return `https://coursesnodejs.herokuapp.com/${link}`
   } else {
     return defaultImgeLink
