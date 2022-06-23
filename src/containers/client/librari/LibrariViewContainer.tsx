@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react"
 import toast from "react-hot-toast";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { getBookitem } from "../../../api/librariApi";
 import Button from "../../../components/form-elements/Button";
+import { imgUrlController } from "../../../constants/Constants";
 import { AuthContext } from "../../../providers/AuthProvider";
 import LoaderContainer from "../../loader/LoaderContainer";
 import { IBook } from "./LibrariContainer";
@@ -43,7 +44,7 @@ export default function LibrariViewContainer() {
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
           <div className="flex flex-col bg-white rounded w-full lg:w-2/2 xl:w-1/3 p-6 divide-y h-fit">
             <div className="flex justify-center mb-6">
-              <img className="w-full rounded " src={bookItem?.imgUrl ? `https://coursesnodejs.herokuapp.com/${bookItem?.imgUrl}` : 'https://www.sicilywelcome.com/assets/images/placeholders/no-img-placeholder.png'} />
+              <img className="w-full rounded object-cover object-center max-h-60" src={imgUrlController(bookItem?.imgUrl)} />
             </div>
             <div className="flex flex-row py-3 border-none">
               <p className="text-md font-medium w-1/2 sm:w-1/2 md:w-2/3 lg:w-1/3 text-gray-600 flex flex-row flex-nowrap space-x-2 items-center">

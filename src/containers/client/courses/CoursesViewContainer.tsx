@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { getCourseItem } from "../../../api/coursesApi";
 import CourseVideoItemComponent from "../../../components/CoursesComponent/CourseVideoItemComponent";
 import Button from "../../../components/form-elements/Button";
+import { imgUrlController } from "../../../constants/Constants";
 import { AuthContext } from "../../../providers/AuthProvider";
 import LoaderContainer from "../../loader/LoaderContainer";
 
@@ -36,7 +37,7 @@ export default function CoursesViewContainer() {
     }
   }, [])
 
-  console.log('courses item', coursesItem)
+  // console.log('courses item', coursesItem)
 
 
   return (
@@ -48,7 +49,7 @@ export default function CoursesViewContainer() {
 
           <div className="flex flex-col bg-white rounded w-full p-6 divide-y h-fit md:w-1/3 lg:w-2/2 xl:w-1/3">
             <div className="flex justify-center mb-6">
-              <img className="w-full rounded " src={coursesItem?.imgUrl ? `https://coursesnodejs.herokuapp.com/${coursesItem?.imgUrl}` : 'https://www.sicilywelcome.com/assets/images/placeholders/no-img-placeholder.png'} />
+              <img className="w-full rounded object-cover object-center max-h-60" src={imgUrlController(coursesItem?.imgUrl)} />
             </div>
             <div className="flex flex-row py-3 border-none items-start">
               <p className="text-sm font-medium w-1/2 sm:w-1/2 md:w-2/3 lg:w-1/3 text-gray-600 flex flex-row flex-nowrap space-x-2 items-center">
