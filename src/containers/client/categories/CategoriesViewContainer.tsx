@@ -56,6 +56,7 @@ export default function CategoriesViewContainer() {
               </p>
               <p className="text-sm font-medium w-1/2 sm:w-1/2 md:w-2/3 lg:w-2/3 text-gray-900 first-letter:uppercase">{categorieItem?.name}</p>
             </div>
+
             <div className="flex flex-row py-3  items-start">
               <p className="text-sm font-medium w-1/2 sm:w-1/2 md:w-2/3 lg:w-1/3 text-gray-600 flex flex-row flex-nowrap space-x-2 items-center">
 
